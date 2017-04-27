@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{margin:0;padding: 0}
+        .cl{position:absolute;width:100%;height:40px;display: none;left:0;}
+        .cl:nth-child(1){top:40px}
+        .cl:nth-child(2){top:80px}
+        .cl:nth-child(3){top:120px}
+        .cl:nth-child(4){top:160px}
+        .num{position: relative;width:50px;float:left;}
+        .tab{position: relative;width:100px;float:left;display: none;}
+    </style>
+    <script src="jquery-3.1.1.js"></script>
+</head>
+<body>
+    <div class="demo">
+        <div class="sj">数据</div>
+        <div class="box">
+            <div class="cl">
+                <div class="num">一号</div>
+                <div class="tab">
+                    <div>101</div>
+                    <div>102</div>
+                    <div>103</div>
+                    <div>104</div>
+                </div>
+            </div>
+            <div class="cl">
+                <div class="num">二号</div>
+                <div class="tab">
+                    <div>101</div>
+                    <div>102</div>
+                    <div>103</div>
+                    <div>104</div>
+                </div>
+            </div>
+            <div class="cl">
+                <div class="num">三号</div>
+                <div class="tab">
+                    <div>101</div>
+                    <div>102</div>
+                    <div>103</div>
+                    <div>104</div>
+                </div>
+            </div>
+            <div class="cl">
+                <div class="num">四号</div>
+                <div class="tab">
+                    <div>101</div>
+                    <div>102</div>
+                    <div>103</div>
+                    <div>104</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $(".sj").click(function(){
+                $(".cl").toggle();
+            });
+
+            $(".cl").each(function(){
+                var _this=$(this);
+                _this.click(function () {
+                    _this.find(".tab").toggle();
+                })
+            })
+        })
+
+    </script>
+</body>
+</html>
