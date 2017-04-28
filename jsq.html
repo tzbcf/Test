@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>计算器</title>
+    <style>
+        *{margin:0;padding: 0}
+        .tab{margin:0 auto;width:400px;background: #a6a6a6}
+        .tab tr:nth-child(1){height:50px;}
+        .tab tr:nth-child(1) th{font-size: 40px;text-align: center}
+        .tab tr:nth-child(2) td{height:100px;}
+        input{width:100%;height:100%;font-size: 20px;}
+        tr td{height:50px;}
+    </style>
+</head>
+<body>
+    <table class="tab">
+        <tr>
+            <th colspan="4" width="100%">计算器</th>
+
+        </tr>
+        <tr >
+            <td colspan="4" width="100%" style="border: 0;">
+                <input class="text" type="text" disabled value="0" style="text-align: right;font-size: 40px;border: none;padding-right:6px;width:390px; ">
+            </td>
+        </tr>
+        <tr>
+            <td  colspan="2" width="50%">
+                <input class="btn_click" type="button" value="AC"/>
+            </td>
+            <td  colspan="2" width="50%">
+                <input class="btn_click" type="button" value="DEL"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input class="btn" type="button" value="7"/>
+            </td>
+            <td>
+                <input class="btn" type="button" value="8"/>
+            </td>
+            <td>
+                <input class="btn" type="button" value="9"/>
+            </td>
+            <td>
+                <input class="btn" type="button" value="*"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input class="btn" type="button" value="4"/>
+            </td>
+            <td>
+                <input class="btn" type="button" value="5"/>
+            </td>
+            <td>
+                <input class="btn" type="button" value="6"/>
+            </td>
+            <td>
+                <input class="btn" type="button" value="/"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input class="btn" type="button" value="1"/>
+            </td>
+            <td>
+                <input class="btn" type="button" value="2"/>
+            </td>
+            <td>
+                <input class="btn" type="button" value="3"/>
+            </td>
+            <td>
+                <input class="btn" type="button" value="-"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input class="btn" type="button" value="."/>
+            </td>
+            <td>
+                <input class="btn" type="button" value="0"/>
+            </td>
+            <td>
+                <input class="btn" type="button" value="+"/>
+            </td>
+            <td>
+                <input class="btn" type="button" value="="/>
+            </td>
+        </tr>
+    </table>
+    <script>
+         window.onload=function(){
+             var arr=[];
+             var btn=document.getElementsByClassName("btn");
+             var text=document.getElementsByClassName("text")[0];
+             var click=document.getElementsByClassName("btn_click");
+             for(let i=0;i<click.length;i++){
+                 click[i].onclick=function(){
+                     if(this.value=="AC"){
+                         arr=[];
+                         text.value="0"
+                     }else{
+                         if(text.value=="0"){
+                             text.value="0"
+                         }else{
+                             text.value=text.value.substr(0,text.value.length-1)
+                         }
+                     }
+                 }
+             }
+             for(let i=0;i<btn.length;i++){
+                 btn[i].onclick=function(){
+                     if(text.value=="0"){
+                         if(this.value=="."){
+                             text.value="0."
+                         }else if(!isNaN(this.value)){
+                             text.value=this.value;
+                         }else{
+                             text.value="0"
+                         }
+                     }else if(text.value=="0."){
+                         if(!isNaN(this.value)){
+                             text.value+=this.value;
+                         }
+                     }else if(text.value!=0){
+                         if(!isNaN(this.value) && this.value=="'"){
+                             if(text.value.indexOf("'")!=-1){
+                                 if(this.value !="'"){
+                                     text.value+=this.value;
+                                 }
+                             }else{
+                                 text.value+=this.value;
+                             }
+                         }else{
+                             if(this.value!="="){
+                                 arr[arr.length]=text.value;
+                                 arr[arr.length]=this.value;
+                                 text.value=""
+                             }else{
+                                 arr[arr.length]=text.value;
+                                 text.value=eval(arr.join(""));
+                                 arr=[];
+                             }
+                         }
+                     }
+                 }
+             }
+
+         }
+//             window.onload = function () {
+//                 var way_res = [];
+//                 var btn_txt = document.getElementsByClassName("btn");
+//                 var txt = document.getElementsByClassName("text")[0];
+//                 var btn_way = document.getElementsByClassName("btn_click");
+//                 for (var i = 0; i < btn_way.length; i++) {
+//                     btn_way[i].onclick = function () {
+//                         if (this.value == "AC") {
+//                             way_res = [];
+//                             txt.value = "0";
+//                         } else {
+//                             txt.value = txt.value.substr(0, txt.value.length - 1);
+//                         }
+//
+//                     }
+//                 }
+//                for (var i = 0; i < btn_txt.length; i++) {
+//                    btn_txt[i].onclick = function () {
+//                        if (txt.value == "" && this.value == ".") {
+//                            txt.value = "0.";
+//                        }else {
+//                            if (!isNaN(this.value) || this.value == ".") {
+//                                if (txt.value.indexOf(".") != -1) {
+//                                    if (this.value != ".") {
+//                                        txt.value += this.value;
+//                                    }
+//                                }else {
+//                                    txt.value += this.value;
+//                                }
+//                            }else {
+//                                if (this.value != "=") {
+//                                    way_res[way_res.length] = txt.value;
+//                                    way_res[way_res.length] = this.value;
+//                                    txt.value ="";
+//                                }else {
+//                                    way_res[way_res.length] = txt.value;
+//                                    txt.value = eval(way_res.join(""));
+//                                    way_res = [];
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//             }
+    </script>
+</body>
+</html>
