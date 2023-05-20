@@ -9,18 +9,17 @@
  * Modified By :
  * -----
  * Copyright (c) 2022 Magina Corporation. All rights reserved.
+ *
+ * @format
  */
-
-
-$(document).ready(function(){
-  $(".sj").click(function(){
-      $(".cl").toggle();
-  });
-
-  $(".cl").each(function(){
-      var _this=$(this);
-      _this.click(function () {
-          _this.find(".tab").toggle();
-      })
-  })
-})
+/**
+ * Tab 点击事件
+ */
+$('.sj').click(function () {
+	$('.cl').each(function () {
+		const _this = $(this);
+		_this.click(function () {
+			_this.find('.tab').toggle();
+		});
+	});
+});
