@@ -13,6 +13,19 @@
  * @format
  */
 /*****
+ * Init Project
+ */
+function init(url) {
+
+  /* ---------- Tooltip ---------- */
+  $('[rel="tooltip"],[data-rel="tooltip"]').tooltip({"placement":"bottom",delay: { show: 400, hide: 200 }});
+
+  /* ---------- Popover ---------- */
+  $('[rel="popover"],[data-rel="popover"],[data-toggle="popover"]').popover();
+
+}
+
+/*****
  * ASYNC LOAD
  * Load JS files and CSS files asynchronously in ajax mode
  */
@@ -25,6 +38,14 @@ function loadJS(jsFiles) {
   }
 
   init();
+}
+
+function appendOnce(element, script) {
+  var scripts = Array.from(document.querySelectorAll('script')).map(function(scr){return scr.src;});
+
+  if (!scripts.includes(script.src)) {
+      element.appendChild(script)
+  }
 }
 
 function appendScript(element, src) {
