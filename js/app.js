@@ -27,6 +27,9 @@ function loadJS(jsFiles) {
 
 }
 
+/*****
+ * Append Once
+ */
 function appendOnce(element, script) {
   const scripts = Array.from(document.querySelectorAll('script')).map(function(scr){return scr.src;});
 
@@ -35,6 +38,9 @@ function appendOnce(element, script) {
   }
 }
 
+/*****
+ * Append Script
+ */
 function appendScript(element, src) {
   const async = (src.substring(0, 4) === 'http');
   const script = document.createElement('script');
@@ -43,4 +49,11 @@ function appendScript(element, src) {
   script.defer = async;
   script.src = src;
   async ? appendOnce(element, script) : element.appendChild(script);
+}
+
+/*****
+ * Init Project
+ */
+function init () {
+  loadJS([])
 }
