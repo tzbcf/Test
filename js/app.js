@@ -12,13 +12,27 @@
  *
  * @format
  */
-/**
- * Tab 点击事件
+/*****
+ * ASYNC LOAD
+ * Load JS files and CSS files asynchronously in ajax mode
  */
-const init = () => {
-  const a = '1';
-  const tab = document.getElementById('tab');
-  tab.innerHTML = a;
+function loadJS(jsFiles) {
+
+  const body = document.getElementsByTagName('body')[0];
+
+  for(var i = 0; i<jsFiles.length; i++){
+      appendScript(body, jsFiles[i])
+  }
+
+  init();
 }
 
-init();
+function appendScript(element, src) {
+  const async = (src.substring(0, 4) === 'http');
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.async = async;
+  script.defer = async;
+  script.src = src;
+  async ? appendOnce(element, script) : element.appendChild(script);
+}
