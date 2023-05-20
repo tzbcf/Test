@@ -31,11 +31,7 @@ function loadJS(jsFiles) {
  * Append Once
  */
 function appendOnce(element, script) {
-  const scripts = Array.from(document.querySelectorAll('script')).map(function(scr){return scr.src;});
-
-  if (!scripts.includes(script.src)) {
     element.appendChild(script);
-  }
 }
 
 /*****
