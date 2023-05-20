@@ -22,7 +22,7 @@ function loadJS(jsFiles) {
   const body = document.getElementsByTagName('body')[0];
 
   for(let i = 0; i<jsFiles.length; i++){
-      appendScript(body, jsFiles[i])
+    appendScript(body, jsFiles[i]);
   }
 
 }
@@ -34,7 +34,7 @@ function appendOnce(element, script) {
   const scripts = Array.from(document.querySelectorAll('script')).map(function(scr){return scr.src;});
 
   if (!scripts.includes(script.src)) {
-      element.appendChild(script)
+    element.appendChild(script);
   }
 }
 
@@ -55,5 +55,7 @@ function appendScript(element, src) {
  * Init Project
  */
 function init () {
-  loadJS([])
+  loadJS([]);
 }
+
+init();
