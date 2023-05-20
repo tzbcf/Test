@@ -15,11 +15,10 @@
 /**
  * Tab 点击事件
  */
-$('.sj').click(function () {
-	$('.cl').each(function () {
-		const _this = $(this);
-		_this.click(function () {
-			_this.find('.tab').toggle();
-		});
-	});
-});
+const init = () => {
+  const a = '1';
+  const tab = document.getElementById('tab');
+  tab.innerHTML = a;
+}
+
+init();
